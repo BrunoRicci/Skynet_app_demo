@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "skynet-js": "^4.0.11-beta"
+  },
+  "name": "skynet_app_demo",
+  "description": "To do list demo app for Skynet",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrunoRicci/Skynet_app_demo.git"
+  },
+  "author": "Bruno Ricci",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/BrunoRicci/Skynet_app_demo/issues"
+  },
+  "homepage": "https://github.com/BrunoRicci/Skynet_app_demo#readme"
+}
