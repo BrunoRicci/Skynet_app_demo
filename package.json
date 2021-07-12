@@ -5,7 +5,7 @@
   "name": "skynet_app_demo",
   "description": "To do list demo app for Skynet",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
   "devDependencies": {
     "webpack": "^5.44.0",
     "webpack-cli": "^4.7.2"
