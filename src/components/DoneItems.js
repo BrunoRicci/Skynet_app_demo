@@ -10,7 +10,12 @@ function DoneItems({todo_list, setTodoList}){
     todo_list.map((item)=>{
         if(item.isDone)
             itemsList.push(
-                ToDoItem({description:item.description, id:item.id, isDone:item.isDone})
+                ToDoItem({  description:item.description,
+                            id:item.id, 
+                            isDone:item.isDone,
+                            todo_list:todo_list,
+                            setTodoList:setTodoList
+                        })
             )
     }
     );

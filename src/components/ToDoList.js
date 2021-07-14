@@ -10,21 +10,12 @@ function ToDoList({todo_list, setTodoList}){
         <div>
             <PendingItems
             todo_list={todo_list}
+            setTodoList={setTodoList}
             />
             <DoneItems
             todo_list={todo_list}
+            setTodoList={setTodoList}
             />
-            {/* {
-                todo_list.map( (item)=>{
-                    
-                    <ToDoItem
-                        description={item.description}
-                        id={item.id}
-                        isdone={false}
-                    />
-                }
-                )
-            } */}
         </div>
     );
 }
