@@ -1,5 +1,11 @@
 // Import react components
 import { useState, useEffect } from 'react';
+import AppHeader from './components/AppHeader';
+import Form from './components/Form';
+import ToDoList from './components/ToDoList';
+import ToDoItem from './components/TodoItem';
+import PendingItems from './components/PendingItems';
+import DoneItems from './components/DoneItems';
 
 // Import App Component & helper
 import WorkshopForm from './components/Form';
@@ -42,6 +48,10 @@ console.log(contentRecord);
 /*****/
 
 function App() {
+
+  const [input_item, setInputItem] = useState('');
+  const [todo_list, setTodoList] = useState([]);
+
   // Define app state helpers
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
@@ -108,7 +118,7 @@ function App() {
     }
 
     // call async setup function
-    initMySky();
+    //initMySky();
 
 
     /*****/
@@ -176,8 +186,8 @@ function App() {
     console.log('Web Page Uploaded:', dirSkylinkUrl);
 
     // To use this later in our React app, save the URL to the state.
-    setWebPageSkylink(dirSkylink);
-    setWebPageSkylinkUrl(dirSkylinkUrl);
+    //setWebPageSkylink(dirSkylink);
+    //setWebPageSkylinkUrl(dirSkylinkUrl);
 
 
     /************************************************/
@@ -358,60 +368,41 @@ function App() {
     setUserColor,
   };
 
-  // handleSelectTab handles selecting the part of the workshop
-  const handleSelectTab = (e, { activeIndex }) => {
-    setActiveTab(activeIndex);
-  };
 
-  const panes = [
-    {
-      menuItem: 'Part 1: File Upload',
-      render: () => (
-        <Tab.Pane>
-          <WorkshopForm {...formProps} />
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: 'Part 2: Folder Upload',
-      render: () => (
-        <Tab.Pane>
-          <WorkshopForm {...formProps} />
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: 'Part 3: MySky',
-      render: () => (
-        <Tab.Pane>
-          <WorkshopForm {...formProps} />
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: 'Part 4: Content Record DAC',
-      render: () => (
-        <Tab.Pane>
-          <WorkshopForm {...formProps} />
-        </Tab.Pane>
-      ),
-    },
-  ];
+
 
   return (
     <Container>
-      <Header
-        as="h1"
-        content="Skynet Workshop App"
-        textAlign="center"
-        style={{ marginTop: '1em', marginBottom: '1em' }}
-      />
-      <Tab
-        menu={{ fluid: true, vertical: true, tabular: true }}
-        panes={panes}
-        onTabChange={handleSelectTab}
-        activeIndex={activeTab}
-      />
+      
+      <AppHeader/>
+      
+
+      <div
+        className="list-body"
+      >
+        <Form
+          input_item={input_item}
+          setInputItem={setInputItem}
+          todo_list={todo_list}
+          setTodoList={setTodoList}
+        />
+
+        <div>
+          <ToDoList
+            todo_list={todo_list}
+            setTodoList={setTodoList}
+          />
+        </div>
+
+        {/* <div className="pending-items">
+          <PendingItems/>
+        </div>
+
+        <div className="done-items">
+          <DoneItems/>
+        </div> */}
+
+      </div>
     </Container>
   );
 }

@@ -1,25 +1,31 @@
+import { FileCoverage } from "istanbul-lib-coverage";
+import DoneItems from "./DoneItems";
+import PendingItems from "./PendingItems";
 import ToDoItem from "./TodoItem";
 
 
-function ToDoList(){
-
-    // let itemsList = [];
-
-    // for (let i = 0; i < 3; i++) {
-    //     itemsList.push(ToDoItem('sadsa'));
-    // }
-
-    let itemsList = [
-        ToDoItem('Item 1'),
-        ToDoItem('Item 2'),
-        ToDoItem('Item 3'),
-
-    ];
-
-    console.log(itemsList);
-
+function ToDoList({todo_list, setTodoList}){
+    console.log('todolist:', todo_list);
     return(
-        itemsList
+        <div>
+            <PendingItems
+            todo_list={todo_list}
+            />
+            <DoneItems
+            todo_list={todo_list}
+            />
+            {/* {
+                todo_list.map( (item)=>{
+                    
+                    <ToDoItem
+                        description={item.description}
+                        id={item.id}
+                        isdone={false}
+                    />
+                }
+                )
+            } */}
+        </div>
     );
 }
 

@@ -1,12 +1,17 @@
-.list-background{
+.list-body{
+    margin: auto;
+    width: 450px;
+    height:'auto';
+    display:'grid';
 
-
+    background-color: rgb(254, 255, 189);
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .list-item{
     padding-inline: 15px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 6px auto;
     border-radius: 20px;
     height: 40px;
     width: 400px;
@@ -18,9 +23,6 @@
     text-align: center;    
 }
 
-.done{
-    
-}
 
 
 .list-item .description{
@@ -28,6 +30,7 @@
     height: 30px;
     margin-top:2px;
     margin-bottom:2px;
+
     font-size: 20px;
     color: rgb(59, 59, 59);
 
@@ -60,4 +63,55 @@
     margin: 5px;
     width: 25px;
     height: 25px;
+}
+
+.button-ready{
+    background-color: rgb(0, 183, 255);
+    align-self: right;
+    margin: 5px;
+    width: 25px;
+    height: 25px;
+}
+
+
+
+.enter-item-box{
+    width: 80%;
+    height: 35px;
+    margin: 20px auto;
+    align-items: center;
+    
+    border: 1px solid lightgray;
+    display: flexbox;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+.task-input{
+    width: 80%;
+    height: 30px;
+    border: 0px;
+    background-color: rgba(254, 255, 189, 0);
+    padding: 0px 10px;
+}
+.task-input-button{
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.pending-items{
+    margin: 30px 10px 10px 10px;
+
+    width: auto;
+    align-items: center;
+}
+
+.done-items{
+    margin: 15px 10px 30px 10px;
+
+    width: auto;
+    align-items: center;
 }

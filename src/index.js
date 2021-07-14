@@ -7,15 +7,21 @@ import 'semantic-ui-css/semantic.min.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { useState } from 'react';
 import './index.css';
 import App from './App';
-import ToDoList from './components/ToDoList';
-import ToDoItem from './components/TodoItem';
 import reportWebVitals from './reportWebVitals';
 
+
 ReactDOM.render(
+
+  
+
+
   <React.StrictMode>
-    <ToDoList/>
+    
+   <App/>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
