@@ -14,7 +14,7 @@ function Form({input_item, setInputItem, todo_list, setTodoList}){
     e.preventDefault();
     setInputItem(e.target.value); //Update value in input_item
 
-    //Update content of todo_list
+    //Append new item to todo_list
     setTodoList([...todo_list,{id: uuidv4(), description:input_item, isDone:false}]);
     
     setInputItem(""); //reset field
