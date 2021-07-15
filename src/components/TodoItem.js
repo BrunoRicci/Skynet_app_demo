@@ -2,6 +2,8 @@
 import ToDoList from "./ToDoList";
 import '../assets/css/toDoList.css';
 import { map } from "jquery";
+import { render } from "react-dom";
+import { Button } from "semantic-ui-react";
 
 const ToDoItem = ({description, id, isDone, todo_list, setTodoList})=>{
     /*  Item of the list: Consists on:
@@ -54,8 +56,7 @@ const ToDoItem = ({description, id, isDone, todo_list, setTodoList})=>{
                 console.log('saved:',i.description, i.id);
             }
         })
-        // setTodoList([...todo_list,{id: id, description:description, isDone:false}]);
-
+        
         console.log('item '+id+' saved.');
     };
 
@@ -69,26 +70,47 @@ const ToDoItem = ({description, id, isDone, todo_list, setTodoList})=>{
         console.log('item '+id+' deleted.');
     };
 
-    const setCompletedItem = ()=>{
+    const toggleCompletedItem = ()=>{
+        todo_list.map((i)=>{
+            if(i.id==id){
+                i.isDone=!i.isDone;
+            }
+        })
+        console.log('toggle', id, todo_list); 
 
     };
 
-    let classname = 'list-item';
+    let class_item_state = 'list-item';
     if(isDone){
-        classname = 'list-item done'
+        class_item_state = 'list-item done'
     }
     
-    let item =  <div className={classname} key={id} >
-                    <input type="checkbox" className="item-checkbox" id={`chkbx_${id}`} ></input>
+    let item = 
+        <div className={class_item_state} key={id} >
+            <input 
+                type="checkbox"
+                checked={isDone}
+                className="item-checkbox" 
+                id={`chkbx_${id}`} 
+                onChange={toggleCompletedItem} 
+            />
 
-                    <p className="description visible" id={`item_label_${id}`}>{description}</p>
-                    <input type="text" className="description hidden" value={description} id={`item_edit_${id}`} onChange={onInputChange} ></input>
+            <p className="description visible" id={`item_label_${id}`}>{description}</p>
+            <input type="text" className="description hidden" value={description} id={`item_edit_${id}`} onChange={onInputChange} ></input>
 
-                    <button type="button" id={`btn_edit_${id}`} className="button-edit" onClick={editItem}>E</button>
-                    <button type="button" id={`btn_rdy_${id}`} className="button-ready hidden" onClick={saveItem}>R</button>
-                    <button type="button" id={`btn_del_${id}`} className="button-delete" onClick={deleteItem}>X</button>
-                </div>;
-
+            {/* <button type="button" id={`btn_edit_${id}`} className="button-edit" onClick={editItem}>E</button> */}
+            {/* <button type="button" id={`btn_rdy_${id}`} className="button-ready hidden" onClick={saveItem}>R</button> */}
+            {/* <button type="button" id={`btn_del_${id}`} className="button-delete" onClick={deleteItem}>X</button> */}
+            
+            <div 
+                className="button-delete"
+                id={`btn_del_${id}`} 
+                onClick={deleteItem}
+            >
+                <i class="trash icon" style={{fontSize:'13px',textShadow:'1px 1px 3px gray',position:'relative' ,margin:'auto'}}></i>
+            </div>
+            {/* <button type="button" id={`btn_done_${id}`} className="button-done" onClick={toggleCompletedItem}>-</button> */}
+        </div>;
 
     return(item);
 };

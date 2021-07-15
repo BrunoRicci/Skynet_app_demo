@@ -15,14 +15,31 @@
     border-radius: 20px;
     height: 40px;
     width: 400px;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     display: flex;
     flex-direction: row;
     
     align-items: center;
     text-align: center;    
+
+    background-color: rgb(254, 255, 223);
+    box-shadow: 1px 1px 5px gray;
 }
 
+.list-item.pending{
+    /* margin: 30px 10px 10px 10px; */
+
+    /* width: auto;
+    align-items: center; */
+}
+
+.list-item.done{
+    /* margin: 15px 10px 30px 10px; */
+    background-color: lightgray;
+    text-decoration: line-through;
+    /* width: auto;
+    align-items: center; */
+}
 
 
 .list-item .description{
@@ -62,10 +79,21 @@
     align-self: right;
     margin: 5px;
     width: 25px;
-    height: 25px;
+    height: 60%;
+    border-radius: 5px;
+    /* background-color: rgba(211, 211, 211, 0.226); */
+    display:flex;
 }
 
 .button-ready{
+    background-color: rgb(0, 183, 255);
+    align-self: right;
+    margin: 5px;
+    width: 25px;
+    height: 25px;
+}
+
+.button-done{
     background-color: rgb(0, 183, 255);
     align-self: right;
     margin: 5px;
@@ -102,16 +130,3 @@
     border: 1px solid black;
 }
 
-.pending-items{
-    margin: 30px 10px 10px 10px;
-
-    width: auto;
-    align-items: center;
-}
-
-.done-items{
-    margin: 15px 10px 30px 10px;
-
-    width: auto;
-    align-items: center;
-}

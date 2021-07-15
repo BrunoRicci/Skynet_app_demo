@@ -29,6 +29,7 @@ function Form({input_item, setInputItem, todo_list, setTodoList}){
       type="text" 
       placeholder="Enter a task..."  
       className="task-input"
+      required
       value={input_item}
       onChange={onInputChange}
     />

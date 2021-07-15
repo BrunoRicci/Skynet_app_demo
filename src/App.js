@@ -394,14 +394,6 @@ function App() {
           />
         </div>
 
-        {/* <div className="pending-items">
-          <PendingItems/>
-        </div>
-
-        <div className="done-items">
-          <DoneItems/>
-        </div> */}
-
       </div>
     </Container>
   );
