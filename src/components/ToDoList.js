@@ -4,8 +4,11 @@ import PendingItems from "./PendingItems";
 import ToDoItem from "./TodoItem";
 
 
-function ToDoList({todo_list, setTodoList}){
-    console.log('todolist:', todo_list);
+function ToDoList({todo_list, setTodoList, data_load, loading, setLoading}){
+    // console.log('todolist:', todo_list);
+    
+    // data_load();
+    
     return(
         <div>
             <PendingItems
