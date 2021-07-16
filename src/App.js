@@ -1,11 +1,13 @@
 // Import react components
 import { useState, useEffect } from 'react';
+import Control from './components/Control';
 import AppHeader from './components/AppHeader';
 import Form from './components/Form';
 import ToDoList from './components/ToDoList';
 import ToDoItem from './components/TodoItem';
 import PendingItems from './components/PendingItems';
 import DoneItems from './components/DoneItems';
+
 
 // Import App Component & helper
 import WorkshopForm from './components/Form';
@@ -33,8 +35,8 @@ import { SkynetClient } from 'skynet-js';
 const portal = window.location.hostname === 'localhost' ? 'https://siasky.net' : undefined;
 
 // Initiate the SkynetClient
-// const client = new SkynetClient(portal);
-const client = new SkynetClient();
+const client = new SkynetClient(portal);
+// const client = new SkynetClient();
 
 
 /*****/
@@ -83,7 +85,8 @@ function App() {
   /************************************************/
 
   // choose a data domain for saving files in MySky
-  const dataDomain = 'localhost';
+  const dataDomain = '';
+  // const dataDomain = 'localhost';
 
   /*****/
 
@@ -95,12 +98,13 @@ function App() {
     // define async setup function
     async function initMySky() {
       try {
+        
         // load invisible iframe and define app's data domain
         // needed for permissions write
         const mySky = await client.loadMySky(dataDomain);
 
         // load necessary DACs and permissions
-        await mySky.loadDacs(contentRecord);                //Uncommented -> 
+        await mySky.loadDacs(contentRecord);                //Uncommented -> a
 
         // check if user is already logged in with permissions
         const loggedIn = await mySky.checkLogin();
@@ -108,9 +112,18 @@ function App() {
         // set react state for login status and
         // to access mySky in rest of app
         setMySky(mySky);
+        // setDataKey('todoListApp');
+        console.log('intial filepath: ',filePath);
+
         setLoggedIn(loggedIn);
         if (loggedIn) {
           setUserID(await mySky.userID());
+          console.log('logged in:', loggedIn, await mySky.userID());
+          
+          //Loads data previously saved.
+          // loadData(mySky);
+          getData();
+
         }
       } catch (e) {
         console.error(e);
@@ -118,11 +131,15 @@ function App() {
     }
 
     // call async setup function
-    //initMySky();
+    initMySky();
 
 
     /*****/
   }, []);
+
+  const initData = ()=>{
+
+  }
 
   // Handle form submission. This is where the bulk of the workshop logic is
   // handled
@@ -229,8 +246,6 @@ function App() {
     if (status) {
       setUserID(await mySky.userID());
     } 
-
-
     /*****/
   };
 
@@ -245,7 +260,7 @@ function App() {
     setLoggedIn(false);
     setUserID('');
 
-
+    console.log('logged out');
     /*****/
   };
 
@@ -254,6 +269,11 @@ function App() {
     /*        Step 3.7 Code goes here              */
     /************************************************/
     // Use setJSON to save the user's information to MySky file
+
+  
+    //Convert todo_list array to JSON
+    console.log(todo_list);
+
     try {
       console.log('userID', userID);
       console.log('filePath', filePath);
@@ -280,33 +300,43 @@ function App() {
   };
 
   // loadData will load the users data from SkyDB
-  const loadData = async (event) => {
-    event.preventDefault();
+  const loadData = async (x) => {
+    // event.preventDefault();
     setLoading(true);
-    console.log('Loading user data from SkyDB');
+    console.log('Loading user data from SkyDB', x);
 
     /************************************************/
     /*        Step 4.5 Code goes here              */
     /************************************************/
     // Use getJSON to load the user's information from SkyDB
-    const { data } = await mySky.getJSON(filePath);
+    // const { data } = await mySky.getJSON(filePath);
+    console.log('loadData filepath: ', filePath);
+    const {data}  = await x.getJSON(filePath);
 
-    // To use this elsewhere in our React app, save the data to the state.
+    //Get data and save it to todo_list
     if (data) {
-      setName(data.name);
-      setFileSkylink(data.skylinkUrl);
-      setWebPageSkylink(data.dirSkylink);
-      setWebPageSkylinkUrl(data.dirSkylinkUrl);
-      setUserColor(data.color);
+      let temp_data = []  //-> convert data from JSON to array
+      setTodoList(data)
       console.log('User data loaded from SkyDB!');
     } else {
       console.error('There was a problem with getJSON');
     }
 
+    console.log('read data:', data);
+
     /*****/
 
     setLoading(false);
   };
+
+  const getData = async ()=>{
+    try {
+      // Get discoverable JSON data from the given path.
+      const { data, dataLink } = await mySky.getJSON("app.hns/path/file.json");
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handleSaveAndRecord = async (event) => {
     event.preventDefault();
@@ -372,6 +402,13 @@ function App() {
 
 
   return (
+
+  <div>
+
+    <Control
+      {...formProps}
+    />
+
     <Container>
       
       <AppHeader/>
@@ -396,6 +433,9 @@ function App() {
 
       </div>
     </Container>
+
+  </div>    
+
   );
 }
 

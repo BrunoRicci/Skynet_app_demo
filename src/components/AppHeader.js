@@ -7,11 +7,11 @@ function AppHeader(){
     
     return(
         <Header
-        className="h1"
-        content="Todo list Skapp"
-        textAlign="center"
-        style={{ marginTop: '1em', marginBottom: '1em'}}
-      />
+          className="h1"
+          content="Todo list Skapp"
+          textAlign="center"
+          style={{ marginTop: '2em', marginBottom: '1em'}}
+        />
     );
 
 }

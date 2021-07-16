@@ -1,4 +1,3 @@
-// import { List } from "semantic-ui-react";
 import ToDoList from "./ToDoList";
 import '../assets/css/toDoList.css';
 import { map } from "jquery";
@@ -46,16 +45,12 @@ const ToDoItem = ({description, id, isDone, todo_list, setTodoList})=>{
         let item_btn_edit = document.querySelector(`#btn_edit_${id}`);
         let item_btn_rdy = document.querySelector(`#btn_rdy_${id}`);
 
-        
         item_text_label.className='description visible';
         item_text_input.className='description hidden';
         
         item_btn_edit.className='button-edit visible';
         item_btn_rdy.className='button-ready hidden';
 
-        // setTodoList( (prev)=>([...prev,{id: id, description:e.target.value, isDone:false}]) );
-        // deleteItem();
-        // console.log(todo_list);
         todo_list.map((i)=>{
             if(i.id==id){
                 i.description=item_text_input.value;
@@ -112,9 +107,26 @@ const ToDoItem = ({description, id, isDone, todo_list, setTodoList})=>{
                 onChange={onInputChange}
             ></input>
 
-            <button type="button" id={`btn_edit_${id}`} className="trash icon" onClick={editItem}>E</button>
-            <button type="button" id={`btn_rdy_${id}`} className="button-ready hidden" onClick={saveItem}>R</button>
-            {/* <button type="button" id={`btn_del_${id}`} className="button-delete" onClick={deleteItem}>X</button> */}
+            <div 
+                id={`btn_edit_${id}`}
+                className="button-edit" 
+                onClick={editItem}
+            >  
+                <i class="compose icon" 
+                        // style={{fontSize:'12px',position:'relative',margin:'10% auto'}}      
+                />   
+            </div>
+                
+            
+            <div 
+                id={`btn_rdy_${id}`} 
+                className="button-ready hidden" 
+                onClick={saveItem}
+            >
+                <i class="save icon" 
+                        // style={{fontSize:'12px',position:'relative',margin:'10% auto'}}      
+                />   
+            </div>
             
             <div 
                 className="button-delete"

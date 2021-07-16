@@ -33,7 +33,9 @@ function Form({input_item, setInputItem, todo_list, setTodoList}){
       value={input_item}
       onChange={onInputChange}
     />
-    <button class="task-input-button" type="submit">+</button>
+    <button class="task-input-button" type="submit">
+      <i className="icon add"></i>
+    </button>
   </form>
   );
 }
